@@ -1,3 +1,5 @@
+import time
+
 from pages.base_page import BasePage
 from pages.locators import ProductPageLocators
 
@@ -7,6 +9,16 @@ class ProductPage(BasePage):
         self.button_add_to_basket_is_present()
         self.button_add_to_basket_click()
         self.solve_quiz_and_get_code()
+
+    def add_to_basket_without_code(self):
+        self.button_add_to_basket_is_present()
+        self.button_add_to_basket_click()
+
+
+
+    def success_message_is_not_present(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Cant be success message"
 
     def button_add_to_basket_is_present(self):
         assert self.is_element_present(*ProductPageLocators.BASKET_BUTTON), \
@@ -45,3 +57,11 @@ class ProductPage(BasePage):
         info_message_product_price = self.browser.find_element(
             *ProductPageLocators.INFO_MESSAGE_PRODUCT_PRICE_VALUE).text
         assert self.compare_values(info_message_product_price, product_price), "Wrong product's price in basket"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message is presented, but should not be"
+
+    def is_disappeared_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE), \
+            "Success message don't dissappeared"
