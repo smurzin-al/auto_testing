@@ -15,7 +15,6 @@ class ProductPage(BasePage):
         self.button_add_to_basket_click()
 
 
-
     def success_message_is_not_present(self):
         assert self.is_not_element_present(*ProductPageLocators.SUCCESS_MESSAGE), \
             "Cant be success message"
