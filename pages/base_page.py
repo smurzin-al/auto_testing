@@ -66,3 +66,7 @@ class BasePage():
 
     def compare_values(self, val1, val2):
         return val1 == val2
+
+    def should_be_authorized_user(self):
+        assert self.is_element_present(*BasePageLocators.USER_ICON), "User icon is not presented," \
+                                                                     " probably unauthorised user"
