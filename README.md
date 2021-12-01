@@ -1,2 +1,3 @@
 # auto_testing
-step1-done
+This project is ready for review.
+Thanks for your attention.
