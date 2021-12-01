@@ -13,6 +13,10 @@ class ProductPage(BasePage):
     def add_to_basket_without_code(self):
         self.button_add_to_basket_is_present()
         self.button_add_to_basket_click()
+        alert = self.browser.switch_to_alert()
+        alert.accept()
+        alert = self.browser.switch_to_alert()
+        alert.accept()
 
 
     def success_message_is_not_present(self):
@@ -35,13 +39,13 @@ class ProductPage(BasePage):
     def checking_basket(self):
         info_message_product_in_basket = (self.browser.find_element(
             *ProductPageLocators.INFO_MESSAGE_PRODUCT_IN_BASKET).text)
-        assert "был добавлен в вашу корзину" in info_message_product_in_basket, \
-            "No such message: был добавлен в вашу корзину"
+        assert "has been added to your basket" in info_message_product_in_basket, \
+            "No such message: has been added to your basket"
 
         info_message_basket_price = (self.browser.find_element(
             *ProductPageLocators.INFO_MESSAGE_BASKET_PRICE).text)
-        assert "Стоимость корзины теперь составляет " in info_message_basket_price, \
-            "No such message: Стоимость корзины теперь составляет"
+        assert "Your basket total is now " in info_message_basket_price, \
+            "No such message: Your basket total is now"
 
         product_name = self.get_product_name()
         product_price = self.get_product_price()
